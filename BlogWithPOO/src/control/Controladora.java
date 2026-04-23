@@ -4,29 +4,28 @@ import logica.Blog;
 import java.util.Map;
 
 public class Controladora {
+    private Map<Integer, Blog> Blogs;
 
-    public static void main(String[] args) {
-
-        Blog blog = new Blog("Mi Blog", "Blog de prueba");
-
-        blog.agregarPublicacion("Primer post", "Contenido del primer post", "Steven");
-        blog.agregarPublicacion("Segundo post", "Contenido del segundo post", "Mary");
-
-        System.out.println("=== LISTA DE TITULOS ===");
-        Map<Integer, String> titulos = blog.listarTitulos();
-        for (Integer codigo : titulos.keySet()) {
-            System.out.println(codigo + " - " + titulos.get(codigo));
-        }
-
-        blog.agregarComentario(1, "steven22@gmail.com", "192.164.0.1", "Excelente");
-        blog.agregarComentario(1, "mary23@gmail.com", "192.164.0.2", "Aburrido");
-
-        System.out.println("\n--- PUBLICACION 1 ---");
-        System.out.println(blog.getPublicacionString(1));
-
-        blog.eliminarComentario(1, 0);
-
-        System.out.println("\n---- PUBLICACION 1 DESPUES DE ELIMINAR COMENTARIO ----");
-        System.out.println(blog.getPublicacionString(1));
+    public Controladora() {
+        blogs = new TreeMap<Integer, Blog>;
     }
-}
+
+    public void crearBlog(String nombre, string descripcion) {
+        Blog b = new Blog(nombre, descripcion);
+        blogs.put(b.getCodigo(), b);
+    }
+
+    public Map<Integer, string> obtenerBlogs() {
+        Map<Integer, String> resultado = new TreeMap<Integer, String>();
+        for (Blog b : blogs.values()) {
+            resultado.put(b.getCodigo(), b.getNombre());
+        }
+        return resultado;
+    }
+
+    public void crearPublicacion(int codigoBlog, String titulo, String texto, String nombre) throws Exception {
+        if (!blogs.containsKey(codigoBlog))
+            throw new Exception("El codigo de blog no es valido.");
+        Blog b = blogs.get(codigoBlog);
+        b.crearPublicacion(titulo, texto, nombre);
+    }
