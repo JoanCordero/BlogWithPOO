@@ -35,12 +35,12 @@ public class Controladora {
         return resultado;
     }
 
-    public void crearPublicacion(int codigoBlog, String titulo, String texto, String nombreCreador) throws Exception {
+    public void crearPublicacion(int codigoBlog, String titulo, String texto, String nombre) throws Exception {
         if (!blogs.containsKey(codigoBlog))
             throw new Exception("El codigo de blog no es valido.");
 
         Blog b = blogs.get(codigoBlog);
-        b.agregarPublicacion(titulo, texto, nombreCreador);
+        b.agregarPublicacion(titulo, texto, nombre);
     }
 
     public Map<Integer, String> obtenerPublicaciones(int codigoBlog) throws Exception {
